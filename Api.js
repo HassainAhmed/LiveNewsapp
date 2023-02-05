@@ -1,0 +1,358 @@
+
+import React, { Component } from "react"
+import News from "./News"
+import Spiner from "./Spiner";
+import PropTypes from 'prop-types';
+
+ class Card extends Component {
+    static defaultProps={
+Country:'in',
+pageSize:8,
+Category: this.prototype.string,
+
+    }
+      static propTypes={
+        Country:PropTypes.string,
+        pageSize:PropTypes.number,
+         Category:PropTypes.string,
+
+        }
+        capitalizeFirstLetter =(string)=> { 
+            return string.charAt(0).toUpperCase() + string.slice(1);
+                    }
+    constructor(props){
+      super(props)
+      console.log("this is done from new");
+      this.state={
+ articles: [
+  {
+      "source": {
+          "id": "google-news-ar",
+          "name": "Google News (Argentina)"
+      },
+      "author": "anónimo",
+      "title": "Tiroteo en Los Ángeles: al menos 10 muertos en un ataque durante las celebraciones por el Año Nuevo Lunar",
+      "description": "Testigos afirmaron que un tirador abrió fuego con una ametralladora y llevaba varias municiones para recargar su arma, en la localidad de Monterey Park, donde reside una importante población de origen asiático. El atacante sigue prófugo",
+      "url": "https://www.infobae.com/america/eeuu/2023/01/22/tiroteo-en-los-angeles-reportan-varios-muertos-en-un-ataque-durante-las-celebraciones-por-el-ano-nuevo-lunar/",
+      "urlToImage": "https://www.infobae.com/new-resizer/YT-CM951JGg78TjFGZom4Ys0rZU=/1200x628/filters:format(webp):quality(85)//cloudfront-us-east-1.images.arcpublishing.com/infobae/VYDKAHEZDDNJ4CACPHF4EZR3WQ.jpg",
+      "publishedAt": "2023-01-23T01:41:15+00:00",
+      "content": "Al menos 10 personas murieron y otras 10 resultaron heridas en un tiroteo masivo a última hora del sábado en una ciudad al este de Los Ángeles tras una celebración del Año Nuevo Lunar que atrajo a mi… [+3235 chars]"
+  },
+  {
+      "source": {
+          "id": "cbs-news",
+          "name": "CBS News"
+      },
+      "author": "CBS News",
+      "title": "What's in the heads of heroes? | 60 Minutes",
+      "description": "Scott Pelley meets with Carnegie Hero Fund awardees and reports on a possible difference in brain make-up for those who commit heroic acts.",
+      "url": "https://www.cbsnews.com/video/andrew-carnegie-hero-fund-commission-60-minutes-video-2023-01-22/",
+      "urlToImage": "https://assets2.cbsnewsstatic.com/hub/i/r/2023/01/22/d0193668-0528-440b-adea-54105716faeb/thumbnail/1200x630/ea2db2c0041a8ccaaee87bbd78c9665d/0122-60minutes-pelley-1646011-640x360.jpg",
+      "publishedAt": "2023-01-23T01:32:22+00:00",
+      "content": "Watch CBS News\r\nCopyright ©2023 CBS Interactive Inc. All rights reserved.\r\nGet browser notifications for breaking news, live events, and exclusive reporting.\r\nNot NowTurn On"
+  },
+  {
+      "source": {
+          "id": "espn",
+          "name": "ESPN"
+      },
+      "author": null,
+      "title": "Denver Pioneers' Coban Porter, brother of Michael Porter Jr., arrested in fatal crash",
+      "description": "Coban Porter was arrested on suspicion of vehicular homicide and reckless driving after he was involved in a fatal two-car crash early Sunday, according to police.",
+      "url": "http://espn.go.com/mens-college-basketball/story/_/id/35506453/denver-pioneers-coban-porter-brother-michael-porter-jr-arrested-fatal-crash",
+      "urlToImage": "https://a4.espncdn.com/combiner/i?img=%2Fphoto%2F2023%2F0123%2Fr1121322_1024x576_16%2D9.jpg",
+      "publishedAt": "2023-01-23T01:08:16Z",
+      "content": "Coban Porter, a sophomore guard at the University of Denver and brother of Denver Nuggets forward Michael Porter Jr., was arrested early Sunday in connection with a fatal crash in Denver, according t… [+679 chars]"
+  },
+  {
+      "source": {
+          "id": "australian-financial-review",
+          "name": "Australian Financial Review"
+      },
+      "author": "Simon Evans",
+      "title": "Moody’s Analytics says buyers of used cars are paying 54pc more than pre-pandemic even though prices are dropping",
+      "description": "Moody’s Analytics says secondhand car buyers are still paying prices up to 54pc higher than before the pandemic, but prices are falling.",
+      "url": "http://www.afr.com/companies/transport/used-car-prices-drop-12pc-but-bargains-a-long-way-off-20230123-p5ceq3",
+      "urlToImage": "https://static.ffx.io/images/$zoom_0.1902%2C$multiply_4%2C$ratio_1.777778%2C$width_1059%2C$x_0%2C$y_11/t_crop_custom/c_scale%2Cw_800%2Cq_88%2Cf_jpg/t_afr_no_label_no_age_social_wm/10fefd001112123287e8e5f69184fe9e8bae89e8",
+      "publishedAt": "2023-01-23T01:03:07Z",
+      "content": "A gradual improvement in the availability of semiconductors has helped car manufacturers lift production levels. Semiconductors are a crucial component in the increasingly sophisticated modern electr… [+1734 chars]"
+  },
+  {
+      "source": {
+          "id": "australian-financial-review",
+          "name": "Australian Financial Review"
+      },
+      "author": "James Thomson",
+      "title": "David Hains: Five lesson from the Rich Lister billionaire’s incredible life",
+      "description": "The late Rich Lister’s incredible seven-decade career is a testament to curiosity, humility and, most of all, class.",
+      "url": "http://www.afr.com/chanticleer/five-lessons-from-david-hains-rich-life-20230123-p5ceqj",
+      "urlToImage": "https://static.ffx.io/images/$zoom_0.6457%2C$multiply_2%2C$ratio_1.777778%2C$width_1059%2C$x_555%2C$y_450/t_crop_custom/c_scale%2Cw_800%2Cq_88%2Cf_jpg/t_afr_opinion_no_age_social_wm/5dfa9e077d435c6316cc3a99e27a9849ee342ffb",
+      "publishedAt": "2023-01-23T00:50:45Z",
+      "content": "The inhabitant of the office was a throwback to another era, too. Hains, who has died at the age of 92, was a gentleman in every sense of the word: unfailingly courteous and eternally understated for… [+3914 chars]"
+  },
+  {
+      "source": {
+          "id": "cnn-es",
+          "name": "CNN Spanish"
+      },
+      "author": "CNN",
+      "title": "Policía detiene a un sospechoso tras el asesinato de un candidato a la Alcaldía de Salinas en plena campaña electoral",
+      "description": "Este crimen se da en medio del periodo de campaña electoral en Ecuador, de cara a las elecciones provinciales que se desarrollarán el próximo 5 de febrero en todo el país.",
+      "url": "https://cnnespanol.cnn.com/2023/01/22/asesinato-sospechoso-alcaldia-salinas-ecuador-orix/",
+      "urlToImage": "https://cnnespanol.cnn.com/wp-content/uploads/2022/10/cnn-logo-cnnee-cnn-espanol-e1590039586425.jpg?quality=100&strip=info",
+      "publishedAt": "2023-01-23T00:31:47Z",
+      "content": "Una ola de violencia golpeó a Ecuador durante 2022 3:23\r\n(CNN Español) -- La Dirección General de Investigación de la Policía Nacional de Ecuador confirmó este domingo que Julio César Farachio, candi… [+1791 chars]"
+  },
+  {
+      "source": {
+          "id": "la-repubblica",
+          "name": "La Repubblica"
+      },
+      "author": "La Repubblica",
+      "title": "Scarpinato: “La mafia non è morta con l'arresto di Messina Denaro, ma c’è chi vuole rottamare il 41 bis”",
+      "description": "Parla l'ex procuratore generale di Palermo, oggi senatore del M5s. \"Il boss ha avuto protezioni eccellenti con infiltrazioni anche negli apparati inve…",
+      "url": "https://www.repubblica.it/cronaca/2023/01/23/news/scarpinato_la_mafia_non_e_morta_con_larresto_di_messina_denaro_ma_ce_chi_vuole_rottamare_il_41_bis-384687597/",
+      "urlToImage": "https://www.repstatic.it/content/nazionale/img/2023/01/22/231127420-43bbd1e4-bec3-464f-8f40-2c57ac44efeb.jpg",
+      "publishedAt": "2023-01-23T00:30:44Z",
+      "content": "Palermo \"Se passa l'idea che con l'arresto di Matteo Messina Denaro la mafia sia stata sconfitta, la legislazione antimafia è a rischio\". Oggi senatore della Repubblica per i Cinquestelle, da procura… [+299 chars]"
+  },
+  {
+      "source": {
+          "id": "el-mundo",
+          "name": "El Mundo"
+      },
+      "author": null,
+      "title": "Los inquilinos se refugian en las habitaciones: la subida de los alquileres obliga a compartir piso para vivir",
+      "description": "Entre la habitación en alquiler más barata de Madrid y la más cara hay una diferencia de 2.850 euros al mes y varios metros cuadrados de espacio. Cada uno de ellos se cotiza...",
+      "url": "https://www.elmundo.es/economia/vivienda/2023/01/23/63c813b521efa083278b45bf.html",
+      "urlToImage": "https://phantom-elmundo.unidadeditorial.es/44e746329ea6804321689d5f2dd52453/resize/1200/f/jpg/assets/multimedia/imagenes/2023/01/22/16744078892962.jpg",
+      "publishedAt": "2023-01-23T00:06:21Z",
+      "content": "Entre la habitación en alquiler más barata de Madrid y la más cara hay una diferencia de 2.850 euros al mes y varios metros cuadrados de espacio. Cada uno de ellos se cotiza cada vez más caro porque … [+6503 chars]"
+  },
+  {
+      "source": {
+          "id": "the-irish-times",
+          "name": "The Irish Times"
+      },
+      "author": "Kitty Holland",
+      "title": "Camhs left more than 100 children without care for up to two years, report finds",
+      "description": "Mental Health Commission identifies serious risk to the safety and wellbeing of children accessing the Child and Adolescent Mental Health Service",
+      "url": "https://www.irishtimes.com/ireland/2023/01/23/camhs-left-more-than-100-children-without-care-for-up-to-two-years-report-finds/",
+      "urlToImage": "https://www.irishtimes.com/resizer/dt0qpIU1vs9CuYLtjCBnh0sjeBc=/1200x630/filters:format(jpg):quality(70)/cloudfront-eu-central-1.images.arcpublishing.com/irishtimes/BMRLHSSC7XTMXVXLBYJA7CIF6M.jpg",
+      "publishedAt": "2023-01-23T00:01:00Z",
+      "content": "More than 100 mentally ill children, including some on medication, were left for up to two years without care by the Child and Adolescent Mental Health Service (Camhs), a report published on Monday f… [+3420 chars]"
+  },
+  {
+      "source": {
+          "id": "la-repubblica",
+          "name": "La Repubblica"
+      },
+      "author": "La Repubblica",
+      "title": "La premier furiosa chiede disciplina. Sospetti sulle mosse di Forza Italia e Terzo polo",
+      "description": "Pronta a frenare il Guardasigilli su ascolti e carriere dei giudici. Da Algeri rilancia l’idea dell’Italia hub del gas",
+      "url": "https://www.repubblica.it/politica/2023/01/23/news/la_premier_furiosa_chiede_disciplina_sospetti_sulle_mosse_di_forza_italia_e_terzo_polo-384687594/",
+      "urlToImage": "https://www.repstatic.it/content/nazionale/img/2023/01/22/231148482-ea2a3769-ce12-4f1a-8fde-3d753c7d04c5.jpg",
+      "publishedAt": "2023-01-23T00:00:00Z",
+      "content": "ALGERI - Il vento gelido frusta il ponte della fregata \"Carabiniere\". A bordo delle nave della Marina ancorata nel porto di Algeri Giorgia Meloni dimentica per qualche ora tutto il fastidio, tutti i … [+126 chars]"
+  },
+  {
+      "source": {
+          "id": "la-repubblica",
+          "name": "La Repubblica"
+      },
+      "author": "La Repubblica",
+      "title": "Carofiglio: “Dal ministro solo pericolosa propaganda che genera impunità”",
+      "description": "L'ex magistrato critica la stretta sulle intercettazioni proposta dal Guardasigilli: \"Spuntare le armi agli investigatori dà garanzie ai crimin…",
+      "url": "https://www.repubblica.it/politica/2023/01/23/news/carofiglio_dal_ministro_solo_pericolosa_propaganda_che_genera_impunita-384687189/",
+      "urlToImage": "https://www.repstatic.it/content/nazionale/img/2023/01/22/225925907-0cd1780a-6a89-4019-bc1a-f0f43a96cbe0.jpg",
+      "publishedAt": "2023-01-23T00:00:00Z",
+      "content": "Gianrico Carofiglio, in Italia esiste una necessità di modificare la disciplina delle intercettazioni come dice il ministro della Giustizia, Carlo Nordio?\"No. Purtroppo siamo in presenza di una peric… [+189 chars]"
+  },
+  {
+      "source": {
+          "id": "la-nacion",
+          "name": "La Nacion"
+      },
+      "author": null,
+      "title": "Investigación: mañana empezarán las citaciones a quienes operaron con bonos antes del anuncio de Massa",
+      "description": "La CNV notificará la apertura de sumario a operadores que compraron títulos hace una semana y los llamará a declarar; se investiga información privilegiada",
+      "url": "http://www.lanacion.com.ar/economia/investigacion-manana-empezaran-las-citaciones-a-quienes-operaron-con-bonos-antes-del-anuncio-de-nid22012023/",
+      "urlToImage": "https://resizer.glanacion.com/resizer/p9SN-bSeYwoe3EhrAzABEX8XDsc=/768x0/filters:format(webp):quality(80)/cloudfront-us-east-1.images.arcpublishing.com/lanacionar/HJEM4L2GPRHSNAX2FOWBSZPXPM.jpg",
+      "publishedAt": "2023-01-22T23:58:45.299Z",
+      "content": "Desde mañana, la Comisión Nacional de Valores (CNV) notificará la apertura de un sumario a los operadores que compraron bonos previo al anuncio de recompra de deuda del Ministerio de Economía. Será e… [+5122 chars]"
+  },
+  {
+      "source": {
+          "id": "info-money",
+          "name": "InfoMoney"
+      },
+      "author": "Rodrigo Petry",
+      "title": "Jorge Paulo Lemann, Marcel Telles e Carlos Alberto Sicupira se manifestam sobre rombo na Americanas (AMER3): \"jamais tivemos conhecimento\"",
+      "description": "Na primeira manifestação pública desde que estourou o rombo contábil na Americanas JP Lemann, Marcel Telles e Sicupira negam conhecimento",
+      "url": "https://www.infomoney.com.br/mercados/americanas-amer3-rombo-jp-lemann-marcel-telles-e-sicupira-negam-conhecimento/",
+      "urlToImage": "https://www.infomoney.com.br/wp-content/uploads/2020/06/beto-sicupira-jorge-paulo-lemann-marcel-telles-20171106-001.jpg?quality=70",
+      "publishedAt": "2023-01-22T23:58:01Z",
+      "content": "© 2000-2023 InfoMoney. Todos os direitos reservados.\r\nO InfoMoney preza a qualidade da informação e atesta a apuração de todo o conteúdo produzido por sua equipe, ressaltando, no entanto, que não faz… [+1194 chars]"
+  },
+  {
+      "source": {
+          "id": "google-news-au",
+          "name": "Google News (Australia)"
+      },
+      "author": "Dan Smith, Daniel Miller",
+      "title": "Divers find body in car submerged in River Derwent, north of Hobart, in search for cold case missing man Dale Nicholson",
+      "description": "A team of divers that specialises in searching for missing people has found a body in a submerged car owned by a Tasmanian man who has been missing for more than six years.",
+      "url": "https://www.abc.net.au/news/2023-01-23/missing-man-dale-nicholson-believed-to-be-found/101881348",
+      "urlToImage": "https://live-production.wcms.abc-cdn.net.au/a83d357b774645e2c4912db3e0df3977?impolicy=wcms_crop_resize&cropH=2542&cropW=4519&xPos=123&yPos=223&width=862&height=485",
+      "publishedAt": "2023-01-22T23:39:15+00:00",
+      "content": "A team of divers that specialises in solving cold case disappearances has found a body in a submerged car owned by a Tasmanian man who has been missing for more than six years.\r\nKey points:\r\n<ul><li>… [+4163 chars]"
+  },
+  {
+      "source": {
+          "id": "google-news-br",
+          "name": "Google News (Brasil)"
+      },
+      "author": "B. M.",
+      "title": "Resgatado corpo de vítima que caiu com o carro dentro de represa",
+      "description": "Notícias em Barbacena e região",
+      "url": "https://barbacenaonline.com.br/resgatado-corpo-de-vitima-que-caiu-com-o-carro-dentro-de-represa/",
+      "urlToImage": "https://barbacenaonline.com.br/application/uploads/2023/01/WhatsApp-Image-2023-01-22-at-14.35.15.jpeg",
+      "publishedAt": "2023-01-22T23:22:15+00:00",
+      "content": "Notícias em Barbacena e região"
+  },
+  {
+      "source": {
+          "id": "google-news-ar",
+          "name": "Google News (Argentina)"
+      },
+      "author": "Clarín.com",
+      "title": "Tragedia en Mendoza: quiénes eran los tres jóvenes que quisieron refrescarse en un canal de riego y murieron",
+      "description": "En una jornada de intenso calor, Emilse (19), su hermano Marco (18) y su novio Nicolás (23) fueron arrastrados por la corriente. El dolor de sus amigos y compañeros en las redes sociales.",
+      "url": "https://www.clarin.com/sociedad/tragedia-mendoza-jovenes-ahogaron-canal-riego_0_hkmyko5g1P.html",
+      "urlToImage": "https://www.clarin.com/img/2023/01/22/gL0UP9N07_1200x630__1.jpg",
+      "publishedAt": "2023-01-22T23:18:01+00:00",
+      "content": "Los tres jóvenes que fallecieron trágicamente este domingo cuando se metieron a nadar en un canal de riego de la provincia de Mendoza tenían proyectos que se vieron truncados este mediodía cuando la … [+2936 chars]"
+  },
+  {
+      "source": {
+          "id": "google-news-uk",
+          "name": "Google News (UK)"
+      },
+      "author": "Stewart Carr",
+      "title": "Six people are injured after car ploughs into pedestrians in north London hit-and-run horror",
+      "description": "Police are hunting for a driver after a car ploughed into a group of pedestrians in Harringay, north London, injuring six people before fleeing the scene.",
+      "url": "https://www.dailymail.co.uk/news/article-11664675/Six-people-injured-car-ploughs-pedestrians-north-London-hit-run-horror.html",
+      "urlToImage": "https://i.dailymail.co.uk/1s/2023/01/22/23/66852433-0-image-a-49_1674431783710.jpg",
+      "publishedAt": "2023-01-22T23:07:52+00:00",
+      "content": "Police are hunting for a driver after a car ploughed into a group of pedestrians in north London, injuring six people.\r\nEmergency services were called at 7.13pm today following reports that a car col… [+1383 chars]"
+  },
+  {
+      "source": {
+          "id": "lequipe",
+          "name": "L'equipe"
+      },
+      "author": "L'EQUIPE",
+      "title": "Pénalisé, Nikolay Gryazin cède son succès en WRC2 à Monte-Carlo à Yohan Rossel",
+      "description": "Pénalisé de cinq secondes par les commissaires, Nikolay Gryazin perd sa première place du rallye de Monte-Carlo au profit du français Yohan Rossel.",
+      "url": "https://www.lequipe.fr/Rallye/Actualites/Penalise-nikolay-gryazin-cede-son-succes-en-wrc2-a-monte-carlo-a-yohan-rossel/1376241",
+      "urlToImage": "https://medias.lequipe.fr/img-photo-jpg/yohan-rossel-profite-de-la-penalite-infligee-a-nikolay-gryazin-s-boue-l-equipe/1500000001738918/0:0,1998:1332-640-427-75/d6e5a.jpg",
+      "publishedAt": "2023-01-22T23:02:49+00:00",
+      "content": "En tête tout au long de la course, le Russe Nikolay Gryazin disposait de plus de quatre secondes d'avance sur son dauphin, Yohan Rossel dimanche après-midi dans le cadre de la 91e édition du rallye d… [+235 chars]"
+  },
+  {
+      "source": {
+          "id": "google-news-ar",
+          "name": "Google News (Argentina)"
+      },
+      "author": "anónimo",
+      "title": "Los efectos de la sequía: miles de peces aparecieron muertos en una costa de Santa Fe",
+      "description": "Un usuario grabó con su celular los restos de los cardúmenes a orillas de la Laguna del Plata en la localidad de Vera y Pintado",
+      "url": "https://www.infobae.com/sociedad/2023/01/22/los-efectos-de-la-sequia-miles-de-peces-aparecieron-muertos-en-una-costa-de-santa-fe/",
+      "urlToImage": "https://www.infobae.com/new-resizer/IQNxIUZ300F5WOtfx30Vn5jm364=/1200x628/filters:format(webp):quality(85)//cloudfront-us-east-1.images.arcpublishing.com/infobae/UBQN6YP3RVCFTK3O25BT2KD25A.jpg",
+      "publishedAt": "2023-01-22T22:58:00+00:00",
+      "content": "Un usuario registró con su celular los miles de peces muertos en la costa de la Laguna del Plata (@vprandina)\r\nLas importantes sequías que se vienen registrando desde hace semanas en distintas region… [+3133 chars]"
+  },
+  {
+      "source": {
+          "id": "cnn",
+          "name": "CNN"
+      },
+      "author": "Dan Heching",
+      "title": "‘Avatar: The Way of Water’ crosses $2 billion mark in worldwide box office",
+      "description": "As has frequently been the case throughout his unparalleled career, James Cameron made film history again this weekend.",
+      "url": "http://us.cnn.com/2023/01/22/entertainment/avatar-way-of-water-2-billion/index.html",
+      "urlToImage": "https://media.cnn.com/api/v1/images/stellar/prod/220509122407-01-avatar-the-way-of-water.jpg?c=16x9&q=w_800,c_fill",
+      "publishedAt": "2023-01-22T22:44:11Z",
+      "content": "As has frequently been the case throughout his unparalleled career, James Cameron made film history again this weekend.\r\nHis long-awaited sequel Avatar: The Way of Water has now made over $2 billion … [+1046 chars]"
+  }
+],
+     page:1,
+     loading:true,
+      }
+      document.title= `${this.capitalizeFirstLetter(this.props.Category)} -Hassain Web Site News`
+    
+    }
+ async   componentDidMount(){
+ console.log("did mount is done ");
+let url =`https://newsapi.org/v2/top-headlines?country=${this.props.Country}&Category=${this.props.Category}&apikey=2968ca75c43f41fea57ab6ddf1e3a1b0&page=1&pageSize=${this.state.pageSize}`;
+this.setState({loading:true})
+    let  data=  await fetch(url);
+    let Newdata= await data.json();
+    this.setState({articles:Newdata.articles,
+    loading:false})
+}
+ OnPrivous=async()=>{
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.Country}&Category=${this.props.Category}&apikey=2968ca75c43f41fea57ab6ddf1e3a1b0&page=
+    ${this.state.page-1}&pageSize=${this.state.pageSize}`
+    this.setState({loading:true})
+    let  data=  await fetch(url);
+    let Newdata= await data.json();
+
+ this.setState({
+page:this.state.page-1,
+articles:Newdata.articles,
+loading:false,
+
+ })
+ }
+ OnNext=async()=>{
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.Country}&Category=${this.props.Category}&apikey=2968ca75c43f41fea57ab6ddf1e3a1b0&page=
+    ${this.state.page +1}&pageSize=${this.state.pageSize}`
+    this.setState({loading:true})
+    let  data=  await fetch(url);
+    let Newdata= await data.json();
+    this.setState({
+        
+        page:this.state.page+1,
+        articles:Newdata.articles,
+        loading:false
+    })
+ }
+
+
+  render() {
+console.log("render");
+    return (<div className="container" >
+        <h1 className="text-center" style={{margin :'35px 0px'}} >  Hassain Web Site News  from
+        {(this.props.Category)} Category </h1>
+       {this.state.loading &&<Spiner ></Spiner>}
+            <div className="row md-2"> 
+            {!this.state.loading &&this.state.articles.map((element)=>{
+       return <div className="col-md-3" key={element.key} >
+          <News title={!element.title?"title will be ubdated soon" :element.title.slice(0,40) &element.title}
+           imageUrl= {!element.urlToImage ? "https://www.infobae.com/new-resizer/YT-CM951JGg78TjFGZom4Ys0rZU=/1200x628/filters:format(webp):quality(85)//cloudfront-us-east-1.images.arcpublishing.com/infobae/VYDKAHEZDDNJ4CACPHF4EZR3WQ.jpg":element.urlToImage} 
+           description={!element.description?"Scott Pelle and reports on a possible difference in brain  acts.":element.description.slice(0,50)}
+             newsUrl={element.url} date={element.publishedAt}
+             source={element.source.name}
+        />
+        </div>})}
+        </div>
+        <div className="container d-flex justify-content-between">
+        <button disabled={this.state.page<=1} type="button" className="btn btn-danger" onClick={this.OnPrivous}>&#8249;Previous</button>
+        <button disabled={this.state.page >4}type="button" className="btn btn-success"onClick={this.OnNext}>Next&raquo;</button>
+</div>  
+        </div> 
+    )
+  }
+}
+export default Card;
